@@ -2,7 +2,15 @@
     <div class="card-header">Clientes</div>
     <div class="card-body text-primary">
       <h5 class="card-title">Listado de Clientes</h5>
-      <table class="table">
+      <div class="my-2 text-left">
+      <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/clientes/form']">
+          Crear Cliente
+      </button>
+      </div>
+      <div *ngIf="clientes?.length ==0" class="alert alert-info"> 
+
+      </div>
+      <table class="table" *ngIf="clientes?.length>0">
         <thead class="thead-dark">
             <tr>
               <th scope="col">#</th>
@@ -10,6 +18,10 @@
               <th scope="col">Apellido</th>
               <th scope="col">Email</th>
               <th scope="col">Fecha</th>
+              <th>
+                editar
+              </th>
+              <th>eliminar</th>
             </tr>
         </thead>  
         <tbody>
@@ -19,6 +31,12 @@
                 <td>{{cliente.apellido}}</td>
                 <td>{{cliente.email}}</td>
                 <td>{{cliente.createAt}}</td>
+                <td>
+                  <button type="button" name="editar" [routerLink]="['/clientes/form', cliente.id]" class="btn btn-primary btn-sm">editar</button>
+                </td>
+                <td>
+                  <button type="button" name="eliminar" class="btn btn-danger btn-sm">eliminar</button>
+                </td>
             </tr>            
         </tbody>       
       </table>
